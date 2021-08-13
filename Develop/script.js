@@ -1,43 +1,70 @@
-var useNum = []
+const many = prompt ('How long would you like your password to be? Please choose a number between 8 and 128 ');
+console.log(many);
+if (many <8){
+  alert('Please choose a number between 8 and 128');
+  prompt ("How long would you like your password to be? Please choose a number between 8 and 128");
+};
+const numbers = confirm('Would you like to use numbers in your password?');
+console.log (numbers);
+const uppercase = confirm('Would you like to include UPPERCASE letters in your password?');
+console.log(uppercase);
+const lowercase = confirm('Would you like to use lowercase letters in your password?');
+console.log(lowercase);
+const symbols = confirm('Would you like to use symbols in your password?');
+console.log(symbols);
 
-var useCap = ['A','B','C','D','E','F','G','H','I','J','K','L',
-'M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-
-var specChar = ["!","#","$","%","&","'","(",",",")","*","+","-",".",
-"/",":",";","<","=",">","?","@","[","]","^","_","`","{","|","}","~","U+005C"]
 
 //Function to generate a random password
-function generatePassword () {
-var useNum = confirm("Would you like to use Numbers in your password?");
-if (useNum) {
-  var useCap = confirm("Would you like to use Capitol letters in your password?");
+function generatePassword (lower, upper, number, symbol, many) {
+  let password = "";
 
-}
-if (useCap) {
-  var specChar = confirm ("Would you like to use any Special characters in your password?");
+  const typesCount = lower + upper + number + symbol;
+  const typesArr = [{lower}, {upper}, {number}, {symbol}]
+    for (let i = 0; i < length; i += typesCount)  {
+    typesArr.forEach(type => {
+      const funcName = Object.keys(type)[0];
 
-}
-if (specChar) {
-  var passLength = prompt ("How long would you like your password to be?");
-
-}
-
-console.log("useNums: " + useNums);
-
-
-
-console.log("useCap: " + useCap);
-
-console.log("specChar: " + specChar);
-
-console.log ("passlength: " + passLength);
-
-
+      generatePassword += randomFunc[funcName] ();
+    });
+    
+  
+  }
+  return password;
 
 
 }
+
+
+const randomFunction = {
+  lower: getRandomLower,
+  upper: getRandomCap,
+  number: getRandomNum,
+  symbol: getRandomSymb
+};
+
+function getRandomLower () {
+
+  return String.fromCharCode(Math.floor(Math.random() *26) + 97);
+  console.log(getRandomLower());
+}
+
+function getRandomCap () {
+  return String.fromCharCode(Math.floor(Math.random() *26) + 65);
+  console.log(getRandomCap());
+}
+
+function getRandomNum () {
+  return String.fromCharCode(Math.floor(Math.random() *10) + 48);
+  console.log(getRandomNum());
+}
+
+function getRandomSymb () {
+  const symbols = '!@#$%^&*(){}[]=<>?,.'
+  return symbols[Math.floor(Math.random() * symbols.length)];
+}
+
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+const generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
@@ -50,4 +77,7 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
 
