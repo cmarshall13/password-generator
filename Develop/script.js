@@ -1,21 +1,31 @@
-const many = prompt ('How long would you like your password to be? Please choose a number between 8 and 128 ');
-console.log(many);
-if (many <8){
-  alert('Please choose a number between 8 and 128');
-  prompt ("How long would you like your password to be? Please choose a number between 8 and 128");
-};
-const numbers = confirm('Would you like to use numbers in your password?');
-console.log (numbers);
-const uppercase = confirm('Would you like to include UPPERCASE letters in your password?');
-console.log(uppercase);
-const lowercase = confirm('Would you like to use lowercase letters in your password?');
-console.log(lowercase);
-const symbols = confirm('Would you like to use symbols in your password?');
-console.log(symbols);
-
-
 //Function to generate a random password
 function generatePassword (lower, upper, number, symbol, many) {
+  const many = prompt ('How long would you like your password to be? Please choose a number between 8 and 128 ');
+  console.log(many);
+    if (many <8){
+      alert('Please choose a number between 8 and 128');
+      prompt ("How long would you like your password to be? Please choose a number between 8 and 128");
+    };
+  const numbers = confirm('Would you like to use numbers in your password?');
+  console.log (numbers);
+  if (numbers) {
+      }
+  const uppercase = confirm('Would you like to include UPPERCASE letters in your password?');
+  console.log(uppercase);
+  if (uppercase) {
+
+  }
+  const lowercase = confirm('Would you like to use lowercase letters in your password?');
+  console.log(lowercase);
+  if (lowercase) {
+
+  }
+  const symbols = confirm('Would you like to use symbols in your password?');
+  console.log(symbols);
+  if (symbols) {
+    
+  }
+
   let password = "";
 
   const typesCount = lower + upper + number + symbol;
@@ -33,6 +43,24 @@ function generatePassword (lower, upper, number, symbol, many) {
 
 
 }
+
+
+
+// Get references to the #generate element
+const generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+}
+
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 
 
 const randomFunction = {
@@ -62,22 +90,4 @@ function getRandomSymb () {
   const symbols = '!@#$%^&*(){}[]=<>?,.'
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
-
-// Get references to the #generate element
-const generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
 
